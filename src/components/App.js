@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import SearchBar from './SearchBar';
-import youtube from '../apis/youtube';
-import VideoList from './VideoList';
-import VideoDetail from './VideoDetail';
+import React, { Component } from "react";
+import SearchBar from "./SearchBar";
+import youtube from "../apis/youtube";
+import VideoList from "./VideoList";
+import VideoDetail from "./VideoDetail";
 
 class App extends Component {
   state = {
@@ -12,7 +12,7 @@ class App extends Component {
 
   componentDidMount = () => {
     this.onTermSubmit("mozart");
-  }
+  };
 
   onTermSubmit = async term => {
     // items[""0""].snippet.thumbnails.default.url
@@ -33,22 +33,29 @@ class App extends Component {
 
   render() {
     return (
-      <div className="ui container">
-        <SearchBar onFormSubmit={this.onTermSubmit} />
-        <div className="ui grid">
-          <div className="ui row">
-            <div className="eleven wide column">
-              <VideoDetail video={this.state.selectedVideo} />
-            </div>
-            <div className="five wide column">
-              <VideoList
-                onVideoSelect={this.onVideoSelect}
-                videos={this.state.videos}
-              />
+      <React.Fragment>
+        <div className="ui secondary segment header">
+          <i className="circular inverted red large video icon"></i>
+          Video Browser
+        </div>
+
+        <div className="ui container">
+          <SearchBar onFormSubmit={this.onTermSubmit} />
+          <div className="ui grid">
+            <div className="ui row">
+              <div className="eleven wide column">
+                <VideoDetail video={this.state.selectedVideo} />
+              </div>
+              <div className="five wide column">
+                <VideoList
+                  onVideoSelect={this.onVideoSelect}
+                  videos={this.state.videos}
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
